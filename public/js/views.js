@@ -124,7 +124,6 @@ App.Views.Contacts = Backbone.View.extend({
 
 	initialize: function() {
 		this.collection.on('add', this.addOne, this);
-		this.collection.on('change:_id', this.logg, this);
 	},
 
 	render: function() {
@@ -135,9 +134,6 @@ App.Views.Contacts = Backbone.View.extend({
 	addOne: function(contact) {
 		var contactView = new App.Views.Contact({ model: contact });
 		this.$el.append(contactView.render().el);
-	},
-	logg: function(){
-		console.log("reset");
 	}
 });
 

@@ -4,6 +4,6 @@ App.Router = Backbone.Router.extend({
 	},
 
 	index: function() {
-		console.log( 'the index page' );
+		console.log( 'INDEX' );
 	}
 });
