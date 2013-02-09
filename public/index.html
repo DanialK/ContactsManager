@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+</head>
+<body>
+<div class = "container">
+<div class="page-header">
+	<h1>Contacts</h1>
+</div>
+<form id="addContact" class="form-horizontal">
+	<h1>Add Contact</h1>
+	<div>
+		<label for="first_name">First Name: </label>
+		<input type="text" id="first_name" name="first_name">
+	</div>
+
+	<div>
+		<label for="last_name">Last Name: </label>
+		<input type="text" id="last_name" name="last_name">
+	</div>
+
+	<div>
+		<label for="email_address">Email Address:</label>
+		<input type="text" id="email_address" name="email_address">
+	</div>
+	<div>
+		<label for="mobile_number">Mobile Number:</label>
+		<input type="text" id="mobile_number" name="mobile_number"></input>
+	</div>
+	<div >
+		<input type="submit" value="Add Contact" class="btn btn-primary" style="margin-top:5px">
+	</div>
+</form>
+
+<div id="editContact" class="module">
+
+</div>
+
+<table id="allContacts" class="table table-hover">
+	<thead>
+		<tr>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Email Address</th>
+			<th>Mobile Number</th>
+			<th>Config</th>
+		</tr>
+	</thead>
+</table>
+
+</div>
+
+<script id="allContactsTemplate" type="text/template">
+	<td><%= first_name %></td>
+	<td><%= last_name %></td>
+	<td><%= email_address %></td>
+	<td><%= mobile_number %></td>
+	<td><a href="#contacts/<%= _id %>/edit" class="edit btn">Edit</a></td>
+	<td><a href="#contacts/<%= _id %>" class="delete btn">Delete</a></td>
+</script>
+
+<script id="editContactTemplate" type="text/template">
+	<h2>Edit Contact: <%= first_name %> <%= last_name %></h2>
+	<form id="editContactForm">
+		<div>
+			<label for="edit_first_name">First Name: </label>
+			<input type="text" id="edit_first_name" name="edit_first_name" value="<%= first_name %>">
+		</div>
+
+		<div>
+			<label for="edit_last_name">Last Name: </label>
+			<input type="text" id="edit_last_name" name="edit_last_name" value="<%= last_name %>">
+		</div>
+
+		<div>
+			<label for="edit_email_address">Email Address:</label>
+			<input type="text" id="edit_email_address" name="edit_email_address" value="<%= email_address %>">
+		</div>
+		<div>
+			<label for="edit_mobile_number">Mobile Number:</label>
+			<input type="text" id="edit_mobile_number" name="edit_email_address" value="<%= mobile_number %>">
+		</div>
+		<div>
+			<input type="submit" value="Edit Contact" class="btn btn-success">
+			<button type="button" class="cancel btn">Cancel</button>
+		</div>
+	</form>
+</script>
+
+<script src="js/jquery-latest.js"></script>
+<script src="js/underscore-min.js"></script>
+<script src="js/backbone-min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/models.js"></script>
+<script src="js/collections.js"></script>
+<script src="js/views.js"></script>
+<script src="js/router.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<script>
+	new App.Router;
+	Backbone.history.start();
+
+	App.contacts = new App.Collections.Contacts;
+	App.contacts.fetch().then(function() {
+		new App.Views.App({ collection: App.contacts });
+	});
+</script>
+
+</body>
+</html>
